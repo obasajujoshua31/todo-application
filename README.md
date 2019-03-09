@@ -2,7 +2,7 @@
 A Todo Application
 
 
-This is a todo Application that implements Indexing in database and caching.
+This is a todo Application that implements Indexing and caching.
 
 
 
