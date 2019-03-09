@@ -17,3 +17,6 @@ This is a todo Application that implements Indexing in database and caching.
 - jsonwebtoken
 - bcyptjs
 - expressjs
+
+
+clone https://github.com/obasajujoshua31/todo-application.git
