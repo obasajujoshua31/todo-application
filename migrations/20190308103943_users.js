@@ -5,16 +5,31 @@ exports.up = function(knex, Promise) {
         table.uuid("id").unique();
         table.string("email").unique();
         table.string("password");
-        table.boolean("verified");
+        table.string("password_digest");
+        table
+          .boolean("verified")
+          .notNullable()
+          .defaultTo(false);
+        table.string("firstName");
+        table.string("lastName");
+        table.string("imageURL");
         table.timestamps();
         table.index(["email"], "email_idx");
       })
       .createTable("todos", table => {
         table.uuid("id");
         table.string("task");
-        table.boolean("completed");
+        table
+          .boolean("completed")
+          .notNullable()
+          .defaultTo(false);
         table.timestamps();
-        table.uuid("user_id").references("users.id");
+        table
+          .uuid("user_id")
+          .references("id")
+          .inTable("users")
+          .onDelete("CASCADE")
+          .onUpdate("CASCADE");
         table.index(["task", "completed"], "task_idx");
       })
   ]);

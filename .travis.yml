@@ -1,0 +1,18 @@
+language: node_js
+nodejs:
+  - node
+services:
+  - postgresql
+  - redis-server
+
+install:
+  - yarn install
+
+script:
+  - yarn test
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - npm run pretest
+
+after_success: yarn coverage
