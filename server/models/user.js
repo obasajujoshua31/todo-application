@@ -1,26 +1,48 @@
-import bookshelf from "./index";
 import Todo from "./todo";
-import Password from "./model";
-import uuid from "uuid/v4";
+import bookshelf from "./index";
 
-let User = bookshelf.Model.extend({
-  tableName: "users",
-  uuid: true,
-  todos: function() {
-    return this.hasMany(Todo);
-  },
-  initialize: function() {
-    this.on("creating", function(user) {
-      user.attributes.password = Password.hashPassword(
-        user.attributes.password
-      );
-      user.attributes.created_at = new Date();
-      user.attributes.id = uuid();
-    });
-  },
-  isMatch: function(password) {
-    return Password.comparePassword(password, this.get("password"));
+/**
+ * @Description This is the User Model with
+ * table name users and has association with Todos
+ */
+class User extends bookshelf.Model {
+  /**
+   * this returns the name of the table users
+   */
+  get tableName() {
+    return "users";
   }
-});
+
+  /**
+   * this enables bookshelf-uuid
+   */
+  get uuid() {
+    return true;
+  }
+
+  /**
+   * this enables bookshelf-secure-password
+   */
+  get hasSecurePassword() {
+    return true;
+  }
+
+  /**
+   * get time stamps
+   */
+  get hasTimestamps() {
+    return true;
+  }
+
+  /**
+   *  This returns the number of todos the user has
+   * @returns {Object} todo
+   */
+  todos() {
+    return this.hasMany(Todo);
+  }
+}
+// User.uuid = true;
+// User.hasSecurePassword = "password";
 
 export default User;

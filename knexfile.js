@@ -1,5 +1,6 @@
 // Update with your config settings.
 const dotenv = require("dotenv");
+
 dotenv.config();
 
 const { TEST_DB, DB_USER, DB_PASSWORD, DB_NAME } = process.env;

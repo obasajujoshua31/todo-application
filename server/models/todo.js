@@ -1,20 +1,32 @@
 import bookshelf from "./index";
 import User from "./user";
-import uuid from "uuid/v4";
 
-const Todo = bookshelf.Model.extend({
-  tableName: "todos",
-  uuid: true,
-  user: function() {
-    return this.belongTo(User);
-  },
-  initialize: function() {
-    this.on("creating", function(todo) {
-      todo.attributes.completed = false;
-      todo.attributes.created_at = new Date();
-      todo.attributes.id = uuid();
-    });
+/**
+ * @description This is a Todo Model with table name todos
+ * and associated with Table Users
+ */
+class Todo extends bookshelf.Model {
+  /**
+   * return the Table Name todos
+   */
+  get tableName() {
+    return "todos";
   }
-});
+
+  /**
+   * get time stamps
+   */
+  get hasTimestamps() {
+    return true;
+  }
+
+  /**
+   * returns the owner of the todo
+   * @returns {Object} User
+   */
+  user() {
+    return this.belongsTo(User);
+  }
+}
 
 export default Todo;
