@@ -18,7 +18,7 @@ describe("User Model Test", () => {
       verified: false
     }).save();
     expect(userInstance).toBeInstanceOf(User);
-    expect(Object.keys(userInstance.attributes)).toHaveLength(5);
+    expect(Object.keys(userInstance.attributes)).toHaveLength(6);
   });
 
   describe("Todo Model Test", () => {

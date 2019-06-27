@@ -4,12 +4,12 @@
   "description": "A todo Application",
   "main": "app.js",
   "scripts": {
-    "pretest": "npm run clean && cross-env NODE_ENV=test knex migrate:latest",
-    "test": "jest --forceExit",
-    "start": "npm run build && node ./dist/app.js",
+    "pretest": "yarn clean && cross-env NODE_ENV=test knex migrate:latest",
+    "test": "jest --coverage --forceExit",
+    "start": "yarn build && node ./dist/app.js",
     "start:dev": "nodemon server/app.js --exec babel-node",
     "build": "npm run clean && babel ./server -d dist",
-    "clean": "rm -rf dist && npm run rollback && npm run migrate",
+    "clean": "rm -rf dist && yarn rollback && yarn migrate",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback"
   },
@@ -17,19 +17,28 @@
   "license": "MIT",
   "dependencies": {
     "@sendgrid/mail": "^6.3.1",
+    "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
     "bookshelf": "^0.14.2",
-    "bookshelf-secure-password": "^3.1.0",
     "bookshelf-uuid": "^1.0.0",
+    "cors": "^2.8.5",
     "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
+    "express-validators": "^1.0.4",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.0",
     "knex": "^0.16.3",
+    "kue": "^0.11.6",
+    "lodash": "^4.17.11",
+    "lodash.isempty": "^4.4.0",
     "mailgen": "^2.0.7",
     "passport": "^0.4.0",
     "passport-google-oauth2": "^0.2.0",
+    "redis": "^2.8.0",
+    "sinon": "^7.2.7",
+    "supertest": "^4.0.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -52,5 +61,8 @@
     "pg": "^7.8.2",
     "rimraf": "^2.6.3",
     "sqlite3": "^4.0.6"
+  },
+  "jest": {
+    "verbose": true
   }
 }

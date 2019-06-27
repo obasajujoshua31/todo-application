@@ -10,6 +10,9 @@ exports.up = function(knex, Promise) {
           .boolean("verified")
           .notNullable()
           .defaultTo(false);
+        table.string("firstName");
+        table.string("lastName");
+        table.string("imageURL");
         table.timestamps();
         table.index(["email"], "email_idx");
       })
