@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@sendgrid/mail": "^6.3.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "bookshelf": "^0.14.2",
     "bookshelf-uuid": "^1.0.0",
